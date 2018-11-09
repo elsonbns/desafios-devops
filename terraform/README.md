@@ -24,3 +24,27 @@ Recursos de infraestrutura em nubvem devem sempre ser criados utilizando gerenci
 - Pode se utilizar tanto AWS quanto GCP (Google Cloud), não é preciso executar o teste em ambas, somente uma.
 - Todos os recursos devem ser criados utilizando os créditos gratuitos da AWS/GCP.
 - Não esquecer de destruir os recursos após criação e testes do desafio para não haver cobranças ou esgotamento dos créditos.
+
+------------------------------------------
+
+# Resolução > Desafio 01: Infrastructure-as-code - Terraform
+
+## Definição dos recursos:
+
+- **Ambiente:** Amazon Web Services
+- **Recursos Terraform:**
+
+Módulos | Descrição
+:------- | :---------
+main.tf | Definição da Instância e suas características (c/ instalação do Docker e Apache)
+variables.tf | Definição das variáveis que serão utilizadas
+aws_ami.tf | Características da imagem a ser utilizada
+providers.tf | Características do recurso AWS
+security_groups.tf | Especificação do SG
+
+## Execução
+
+- Alterar as chaves da AWS no arquivo `variables.tf`;
+> `aws_access_key` e `aws_secret_key`
+
+- Alterar a chave `key_name` com o nome da Key Pair criada na AWS, no arquivo `main.tf`;

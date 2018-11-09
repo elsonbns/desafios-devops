@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: desafio
+  labels:
+    app: desafio
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: desafio
+  template:
+    metadata:
+      labels:
+        app: desafio
+    spec:
+      containers:
+      - name: desafio-app
+        image: elsonbns/desafio:2.0.0
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NAME
+          valueFrom:
+            configMapKeyRef:
+              name: desafio
+              key: MYNAME
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: desafio
+spec:
+  type: ClusterIP
+  selector:
+    app: desafio
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: desafio
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: desafio
+          servicePort: 80
