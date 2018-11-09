@@ -30,3 +30,26 @@ Dentro deste repositório existe um subdiretório **app** e um **Dockerfile** qu
 * A aplicação sobe por _default_ utilizando a porta **3000** e utiliza uma variável de ambiente **$NAME**
 
 * Não é necessário realizar o _upload_ da imagem Docker para um registro público, você pode construir a imagem localmente e utilizá-la diretamente.
+
+------------------------------------------
+
+# Resolução > Desafio 02: Kubernetes
+
+## Definição dos recursos:
+
+- **Ambiente:** minikube
+- Criado diretório `desafio2` para armazenar o manifestos do kubernetes;
+
+Arquivos | Descrição
+:------- | :---------
+full_app.yaml | Toda a definição da aplicação (_Deployment, Service e Ingresses_)
+configmap.yaml | Variável para exibição de Nome, sem alterar o _Deployment_.
+
+## Execução:
+
+- Subir o `minikube`;
+- Criar a imagem Docker da aplicação;
+- Aplicar a definição do manifesto `Config Map`;
+> `kubectl apply -f configmap.yaml`
+- Aplicar a definição do manifesto `Deployment, Service e Ingresses`:
+> `kubectl apply -f full_app.yaml`
